@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registration-php
+spec:
+  selector:
+    app: registration-php
+    tier: frontend
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registration1
+  labels:
+    app: registration-php
+    tier: frontend
+spec:
+  selector:
+    matchLabels:
+      app: registration-php
+      tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registration-php
+        tier: frontend
+    spec:
+      containers:
+      - name: registration1
+        image: harsha1510/registration-web-4.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS db_admission;
+
+    USE db_admission;
+
+    CREATE TABLE student (id int(11) NOT NULL, sname varchar(200) NOT NULL, gname varchar(200) NOT NULL, contact varchar(50) NOT NULL, email varchar(100) NOT NULL, address varchar(2000) NOT NULL, class varchar(10) NOT NULL, shift int(11) NOT NULL, gender varchar(10) NOT NULL, blgroup varchar(5) NOT NULL, division int(11) NOT NULL);
+
+    ALTER TABLE student ADD PRIMARY KEY (id),ADD UNIQUE KEY email (email);
+
+    ALTER TABLE student MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+    INSERT INTO student VALUES (8, 'Tahmid Nishat', 'Abul khasem khan', '01683302276', 'tahmaaidoane@gmail.com', 'Maheshkhali', 'Hons', 1, '', 'A+', 1);
+
+    INSERT INTO student VALUES (17, 'Tahmid Uddin Mahmud Nishat', 'Abul khasem khan', '01822597379', 'tahmidnishat@gmail.com', 'Maheshkhali', '12', 1, 'male', 'A+', 1);
+
+    INSERT INTO student VALUES (18, 'Izaz Mahmud Tahur', 'Abul khasem khan', '01683302276', 'izaz@gmail.com', 'Fakiraghona, Bara Maheshkhali', '5', 1, 'male', 'A+', 1);
